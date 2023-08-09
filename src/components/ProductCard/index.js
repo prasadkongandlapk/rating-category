@@ -1,7 +1,7 @@
 import './index.css'
 
 const ProductCard = props => {
-  const {productData} = props
+  const {productData, ratingId} = props
   const {title, brand, imageUrl, rating, price} = productData
 
   return (

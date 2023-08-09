@@ -80,6 +80,10 @@ class AllProductsSection extends Component {
     this.getProducts()
   }
 
+  onClear = () => {
+    this.setState({rating: '', category: '', searchInput: ''})
+  }
+
   onRating = ratingId => {
     this.setState({rating: ratingId})
   }
@@ -138,6 +142,7 @@ class AllProductsSection extends Component {
       searchInput,
       productsFailure,
       activeOptionId,
+      rating,
     } = this.state
 
     if (productsList.length === 0) {
@@ -158,7 +163,11 @@ class AllProductsSection extends Component {
         ) : (
           <ul className="products-list">
             {productsList.map(product => (
-              <ProductCard productData={product} key={product.id} />
+              <ProductCard
+                ratingId={rating}
+                productData={product}
+                key={product.id}
+              />
             ))}
           </ul>
         )}
@@ -196,6 +205,7 @@ class AllProductsSection extends Component {
               onCategory={this.onCategory}
               categories={categoryOptions}
               ratings={ratingsList}
+              onClear={this.onClear}
             />
           </div>
           <div className="fadjflks">

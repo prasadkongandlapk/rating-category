@@ -40,7 +40,12 @@ const Ratings = props => {
 }
 
 const FiltersGroup = props => {
-  const {ratings, onRating, onCategory, categories} = props
+  const {ratings, onClear, onRating, onCategory, categories} = props
+
+  const onClickClearBtn = () => {
+    onClear()
+  }
+
   return (
     <div className="filters-group-container">
       <h1>Category</h1>
@@ -63,7 +68,7 @@ const FiltersGroup = props => {
           />
         ))}
       </ul>
-      <button type="button" className="lkjfsdj">
+      <button onClick={onClickClearBtn} type="button" className="lkjfsdj">
         Clear Filters
       </button>
     </div>
