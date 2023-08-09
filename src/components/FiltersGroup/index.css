@@ -1,0 +1,45 @@
+.filters-group-container {
+  margin-top: 10px;
+}
+.lkjfsdj {
+  color: dodgerblue;
+  border-color: dodgerblue;
+  background-color: transparent;
+  border-radius: 4px;
+}
+.jjdfskalk {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  color: #64748b;
+}
+.dsfsjl {
+  color: #64748b;
+  background-color: transparent;
+  border-style: none;
+  display: flex;
+  flex-direction: row;
+}
+li {
+  list-style: none;
+}
+.dfasklj {
+  background-color: transparent;
+  border-style: none;
+  font-size: 15px;
+  color: #64748b;
+}
+.jkladfs {
+  height: 20px;
+  width: 100px;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .filters-group-container {
+    max-width: 350px;
+    margin-top: 10px;
+    flex-shrink: 0;
+  }
+}
