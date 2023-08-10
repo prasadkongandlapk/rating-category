@@ -26,7 +26,21 @@
   font-size: 20px;
   font-weight: 500;
 }
-
+.fldkjasdfsklj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  font-family: 'roboto';
+}
+.ppp {
+  color: #64748b;
+  font-size: 12px;
+}
+.fldkjas {
+  height: 200px;
+  width: 200px;
+}
 @media screen and (min-width: 768px) {
   .products-heading {
     font-size: 32px;

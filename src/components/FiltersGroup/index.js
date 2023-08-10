@@ -1,44 +1,5 @@
 import './index.css'
 
-const Categories = props => {
-  const {categoryDetails, onCategory} = props
-  const {name} = categoryDetails
-
-  const onClickCategory = () => {
-    const {categoryId} = categoryDetails
-    onCategory(categoryId)
-  }
-
-  return (
-    <li>
-      <button type="button" className="dfasklj">
-        <p>{name}</p>
-      </button>
-    </li>
-  )
-}
-
-const Ratings = props => {
-  const {ratingDetails, onRating} = props
-  const {imageUrl} = ratingDetails
-
-  const onClickRating = () => {
-    const {ratingId} = ratingDetails
-    onRating(ratingId)
-  }
-
-  return (
-    <li>
-      <div className="jjdfskalk">
-        <button onClick={onClickRating} type="button" className="dsfsjl">
-          <img className="jkladfs" src={imageUrl} alt="rating" />
-          <p>& up</p>
-        </button>
-      </div>
-    </li>
-  )
-}
-
 const FiltersGroup = props => {
   const {ratings, onClear, onRating, onCategory, categories} = props
 
@@ -50,24 +11,43 @@ const FiltersGroup = props => {
     <div className="filters-group-container">
       <h1>Category</h1>
       <ul>
-        {categories.map(each => (
-          <Categories
-            onCategory={onCategory}
-            categoryDetails={each}
-            key={each.categoryId}
-          />
-        ))}
+        {categories.map(each => {
+          const onClickCategory = () => {
+            onCategory(each.categoryId)
+          }
+          return (
+            <li key={each.categoryId}>
+              <button
+                onClick={onClickCategory}
+                type="button"
+                className="dfasklj"
+              >
+                <p>{each.name}</p>
+              </button>
+            </li>
+          )
+        })}
       </ul>
       <h1>Rating</h1>
-      <ul>
-        {ratings.map(each => (
-          <Ratings
-            onRating={onRating}
-            ratingDetails={each}
-            key={each.ratingId}
-          />
-        ))}
-      </ul>
+      {ratings.map(each => {
+        const onClickRating = () => {
+          onRating(each.ratingId)
+        }
+        return (
+          <li key={each.ratingId}>
+            <div className="jjdfskalk">
+              <button onClick={onClickRating} type="button" className="dsfsjl">
+                <img
+                  className="jkladfs"
+                  src={each.imageUrl}
+                  alt={`rating ${each.ratingId}`}
+                />
+                <p>& up</p>
+              </button>
+            </div>
+          </li>
+        )
+      })}
       <button onClick={onClickClearBtn} type="button" className="lkjfsdj">
         Clear Filters
       </button>

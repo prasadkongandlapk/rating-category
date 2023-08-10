@@ -81,19 +81,19 @@ class AllProductsSection extends Component {
   }
 
   onClear = () => {
-    this.setState({rating: '', category: '', searchInput: ''})
+    this.setState({rating: '', category: '', searchInput: ''}, this.getProducts)
   }
 
   onRating = ratingId => {
-    this.setState({rating: ratingId})
+    this.setState({rating: ratingId}, this.getProducts)
   }
 
   onCategory = categoryId => {
-    this.setState({category: categoryId})
+    this.setState({category: categoryId}, this.getProducts)
   }
 
   onChange = value => {
-    this.setState({searchInput: value})
+    this.setState({searchInput: value}, this.getProducts)
   }
 
   getProducts = async () => {
@@ -105,7 +105,7 @@ class AllProductsSection extends Component {
     // TODO: Update the code to get products with filters applied
 
     const {activeOptionId, category, searchInput, rating} = this.state
-    const apiUrl = `https://apis.ccbp.in/products?sort_by=${activeOptionId}&category${category}&title_search${searchInput}&rating${rating}`
+    const apiUrl = `https://apis.ccbp.in/products?sort_by=${activeOptionId}&category=${category}&title_search=${searchInput}&rating=${rating}`
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
@@ -113,7 +113,7 @@ class AllProductsSection extends Component {
       method: 'GET',
     }
     const response = await fetch(apiUrl, options)
-    if (response.ok) {
+    if (response.ok === true) {
       const fetchedData = await response.json()
       const updatedData = fetchedData.products.map(product => ({
         title: product.title,
@@ -128,7 +128,7 @@ class AllProductsSection extends Component {
         isLoading: false,
       })
     } else {
-      this.setState({productsFailure: true})
+      this.setState({productsFailure: true, isLoading: false})
     }
   }
 
@@ -147,19 +147,30 @@ class AllProductsSection extends Component {
 
     if (productsList.length === 0) {
       return (
-        <img
-          src="https://assets.ccbp.in/frontend/react-js/nxt-trendz/nxt-trendz-no-products-view.png "
-          alt="no products"
-        />
+        <div className="fldkjasdfsklj">
+          <img
+            className="fldkjas"
+            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz/nxt-trendz-no-products-view.png "
+            alt="no products"
+          />
+        </div>
       )
     }
     return (
       <div className="all-products-container">
         {productsFailure ? (
-          <img
-            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz/nxt-trendz-products-error-view.png "
-            alt="products failure"
-          />
+          <div className="fldkjasdfsklj">
+            <img
+              className="fldkjas"
+              src="https://assets.ccbp.in/frontend/react-js/nxt-trendz/nxt-trendz-products-error-view.png "
+              alt="products failure"
+            />
+            <h4> Oops! Something Went Wrong</h4>
+            <p className="ppp">
+              We are having some trouble processing your request. Please try
+              again.
+            </p>
+          </div>
         ) : (
           <ul className="products-list">
             {productsList.map(product => (
