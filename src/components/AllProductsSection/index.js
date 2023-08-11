@@ -1,7 +1,6 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
-
 import FiltersGroup from '../FiltersGroup'
 import ProductCard from '../ProductCard'
 import ProductsHeader from '../ProductsHeader'
@@ -93,7 +92,13 @@ class AllProductsSection extends Component {
   }
 
   onChange = value => {
-    this.setState({searchInput: value}, this.getProducts)
+    this.setState({searchInput: value})
+  }
+
+  onKey = event => {
+    if (event.key === 'Enter') {
+      this.getProducts()
+    }
   }
 
   getProducts = async () => {
@@ -192,8 +197,6 @@ class AllProductsSection extends Component {
     </div>
   )
 
-  // TODO: Add failure view
-
   render() {
     const {isLoading, searchInput, activeOptionId} = this.state
 
@@ -206,9 +209,9 @@ class AllProductsSection extends Component {
             sortbyOptions={sortbyOptions}
             changeSortby={this.changeSortby}
             searchInput={searchInput}
+            onKey={this.onKey}
           />
         </div>
-        {/* TODO: Update the below element */}
         <div className="products-section-bg">
           <div>
             <FiltersGroup

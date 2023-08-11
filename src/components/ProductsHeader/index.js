@@ -3,11 +3,15 @@ import {BsFilterRight, BsSearch} from 'react-icons/bs'
 import './index.css'
 
 const ProductsHeader = props => {
-  const {onChange, searchInput} = props
+  const {onChange, onKey, searchInput} = props
 
   const onChangeSortby = event => {
     const {changeSortby} = props
     changeSortby(event.target.value)
+  }
+
+  const onKeyDownBtn = event => {
+    onKey(event.target.value)
   }
 
   const onSearchInput = event => {
@@ -21,6 +25,7 @@ const ProductsHeader = props => {
       <div className="input-bg">
         <input
           className="inpu"
+          onKeyDown={onKeyDownBtn}
           onChange={onSearchInput}
           type="search"
           placeholder="Search"
