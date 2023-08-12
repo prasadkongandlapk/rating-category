@@ -92,7 +92,7 @@ class AllProductsSection extends Component {
   }
 
   onChange = value => {
-    this.setState({searchInput: value})
+    this.setState({searchInput: value}, this.getProducts())
   }
 
   onKey = event => {
